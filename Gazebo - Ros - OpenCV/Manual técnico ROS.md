@@ -193,7 +193,36 @@ Tras ejecutar el comando, nos debería aparecer el modelo de robot controlado po
 
 ![alt-text](https://drive.google.com/uc?id=0B7qDHl7DSpgQUEljOHd6YTEtNlk "Vista Lateral")
 
+# Arquitectura del programa
+
+![alt-text](https://drive.google.com/uc?id=0B7qDHl7DSpgQZUJzaWtSQk5WRzQ "Vista Lateral")
+
+Gazebo utiliza una arquitectura de Software de Suscriptor y Publicador. De este modo, y para poder comunicar el robot controlado por medio de ROS en Gazebo con el API, se utilizan los topics proporcionados por ROS, los cuales son: 
+
+- ros.msgs.image: este topic posee la información del sensor de la cámara (imagen).
+  Se maneja una estructura de un paquete de mensaje, donde contiene: 
+    - Las dimensiones (width y height ) de la imagen.
+    - El formato de píxeles que utiliza. 
+    - Un arreglo de bytes (Imagen).
+- ros.msgs.cmd_vel:  este topic maneja la información de las articulaciones (Joints) que tiene el robot, en         este caso, las ruedas del robot. Se maneja una estructura de un paquete de mensaje, donde se tiene la siguiente información:
+    - Nombre.
+    - Fuerza, que maneja la unidad de Newton (N).
+    - Positión.
+    - Eje. 
+    - Velocidad.
+    - Reset.
+
+La comunicación de Gazebo con la información generada a través de **gzserver** mediante el patrón **Suscriptor / Publicador**, mediante el protocolo **TCP/IP socket**. Permitiendo a **Google Protobufs** realizar la serialización (traducción) de los mensajes entre el suscriptor y el publicador. A la vez, **Boost ASIO** realiza la comunicación entre las capas de **Gazebo** y **Google Protobuts**.
  
+#### TECNOLOGÍA UTILIZADA
+
+La comunicación que se realizó con Gazebo, fueron con dos programas en la cual incluía la tecnología de **Trollius**.
+
+**Trollius:** Utiliza una infraestructura para la escritura de un solo código concurrente que usa coroutine, múltiple acceso I/O sobre sockets y otros recursos.
+
+Se utilizó el lenguaje de programación **Python**. Para realizar la comunicación entre los programas y ROS, se utilizó la librería **Pyros**.
+
+**Pyros:** librería que provee API's multiprocesos a ROS junto a Python, manteniéndolos a los dos completamente desacoplados.
 
 
 # Referencias
