@@ -1,26 +1,26 @@
-﻿# Manual Tecnico Gazebo - OpenCv 
+# Manual Técnico Gazebo - OpenCv 
 
 ### INTRODUCCIÓN
 
-Se explicara los procedimientos de instalación y la configuración que se obtuvo en el proyecto.
+Se explicará los procedimientos de instalación y la configuración que se obtuvo en el proyecto.
 
 El proyecto consta de dos programas que realiza la conexión entre Gazebo y un Algoritmo de Visión Artificial.
 
-El programa RobotSimCvImage, es el encargado de realizar una conexión a Gazebo a través de sus una subscripción a un topic que dispone, para adquirir las imagenes de la camara del robot.
+El programa RobotSimCvImage, es el encargado de realizar una conexión a Gazebo a través de una subscripción a un topic que dispone, para adquirir las imágenes de la cámara del robot.
 
-El programa RobotSimCvMove, es el encargado de realizar una conexión a Gazebo como un publicador, enviando información al topic que diponible, para poder aplicarle fisica al robot para su movimiento.
+El programa RobotSimCvMove, es el encargado de realizar una conexión a Gazebo como un publicador, enviando información al topic que disponible, para poder aplicarle física al robot para su movimiento.
 
 El proyecto fue realizado en el Sistema Operativo Ubuntu 14.04, Python 2.7, OpenCv 3.0 y Gazebo7.
 
 ### INSTALACIÓN GAZEBO
 
-Actualmente Gazebo es utilizado para simulación en la parte robotica, su versión mas reciente es la 8.0 que esta disponible para Ubuntu 16.
+Actualmente Gazebo es utilizado para simulación en la parte robótica, su versión más reciente es la 8.0 que está disponible para Ubuntu 16.
 
-Gazebo tiene diferentes repositorios en Ubuntu donde se puede localizar la versión del simulador para la versión del sistema Operativo que se esta trabajando.
+Gazebo tiene diferentes repositorios en Ubuntu donde se puede localizar la versión del simulador para la versión del sistema Operativo que se está trabajando.
 
-Para ubuntu 14.04 Gazebo tiene disponible la versión 7.0, el cual, fue el utilizado para el desarrollo de este proyecto.
+Para Ubuntu 14.04 Gazebo tiene disponible la versión 7.0, el cual, fue el utilizado para el desarrollo de este proyecto.
 
-Su instalación es muy facil, ya que se dispone del repositorio en Ubuntu 14.04.
+Su instalación es muy fácil, ya que se dispone del repositorio en Ubuntu 14.04.
 
 El paso a paso de la instalación es:
 
@@ -30,22 +30,22 @@ El paso a paso de la instalación es:
      $sudo apt-get install gazebo7
 ```
 ##### Recomendación: 
-Gazebo requiere para su buen funcionamiento, una Tarjeta grafica aceleradora 3D con OpenGL, para realizar diversas tareas de representación y simulación de imagenes correctamente. Pero no es necesario para su instalación y funcionamiento.
+Gazebo requiere para su buen funcionamiento, una Tarjeta gráfica aceleradora 3D con OpenGL, para realizar diversas tareas de representación y simulación de imágenes correctamente. Pero no es necesario para su instalación y funcionamiento.
 
 
-En este proyecto se utilizo:
+En este proyecto se utilizó:
 - NVIDIA NVS 310 con 2 GB
-- 12 GB de Ram.
+- 12 GB de RAM.
 - Intel coreI7
 
 
 ### INSTALACIÓN OPENCV EN UBUNTU CON PYTHON.
 
-OpenCV es una libreria de codigo abierto para C/C++. Con el se realiza procesamiento de imágenes y visión computarizada.
+OpenCV es una librería de código abierto para C/C++. Con él se realiza procesamiento de imágenes y visión computarizada.
 
-La versión mas reciente que se tiene es la 3.2-Dev.
+La versión más reciente que se tiene es la 3.2-Dev.
 
-En el proyecto se trabajo la versión 3.0 por su compatiblilidad con Python 2.7.
+En el proyecto se trabajó la versión 3.0 por su compatibilidad con Python 2.7.
 
 Python 2.7 ya viene instalado en el Sistema Operativo Ubuntu 14.04
 
@@ -70,19 +70,19 @@ Para mostrar la imagen que OpenCv carga mediante una interfaz (GUI) se instala l
 $ sudo apt-get install libgtk2.0-dev
 ```
 
-Se debe instalar las siguientes librerias para el flujo de videos y poder acceder individualmente a las imágenes para su análisis.
+Se debe instalar las siguientes librerías para el flujo de videos y poder acceder individualmente a las imágenes para su análisis.
 ```{r, engine='bash', count_lines } 
 $ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 ```
 
-Y por último, se necesitara optimizar algunos detalles dentro de OpenCV, con librerías que lo permite.
+Y, por último, se necesitará optimizar algunos detalles dentro de OpenCV, con librerías que lo permite.
 ```{r, engine='bash', count_lines } 
 $ sudo apt-get install libatlas-base-dev gfortran
 ```
 
 Se requiere un gestor de descarga y de instalación de paquetes de Python, para poder gestionar los requerimientos para utilizar OpenCV con Python.
 
-El gestor oficial de descargas de librerias de Python es pip, se procede a descargarlos de la pagina oficial de PIP e instalarlo de la siguiente manera.
+El gestor oficial de descargas de librerías de Python es pip, se procede a descargarlos de la página oficial de PIP e instalarlo de la siguiente manera.
 
 ```{r, engine='bash', count_lines } 
 $ wget https://bootstrap.pypa.io/get-pip.py
@@ -101,7 +101,7 @@ Se borra los residuos de pip para no generar inconvenientes.
 $ sudo rm -rf ~/.cache/pip
 ```
 
-Ahora se debe de actualizar nuestro archivo “ ~ / . bashrc ” , que se encuentra en la raíz principal. Se modificara el archivo, por eso revisa los permisos que se tiene.
+Ahora se debe de actualizar nuestro archivo “ ~ / . bashrc ” , que se encuentra en la raíz principal. Se modificará el archivo, por eso se revisa los permisos que se tiene.
 ```{r, engine='bash', count_lines } 
 $ ls –la ~/ | more
 ```
@@ -132,9 +132,9 @@ Como las imágenes son representadas como matrices multidimensionales, necesitar
 $ pip install numpy
 ```
 
-Con esto se complemento las instalaciones de paquetes necesarios para completar nuestra instalación de OpenCV con Python.
+Con esto se complementó las instalaciones de paquetes necesarios para completar nuestra instalación de OpenCV con Python.
 
-Ahora descargaremos mediante GitHub el codigo fuente libre de OpenCV, guardandose en la raíz principal.
+Ahora descargaremos mediante GitHub el código fuente libre de OpenCV, guardándose en la raíz principal.
 ```{r, engine='bash', count_lines } 
 $ cd ~
 $ git clone https://github.com/Itseez/opencv.git
@@ -175,7 +175,7 @@ $ sudo make install
 $ sudo ldconfig
 ```
 
-Finalizado todo, podemos confirmar si se instalo bien OpenCV.
+Finalizado todo, podemos confirmar si se instaló bien OpenCV.
 ```{r, engine='bash', count_lines } 
 $ workon cv
 $ python
@@ -205,14 +205,17 @@ La creación de modelos de robots, en Gazebo (sin utilizar ROS), no se puede hac
 
 Inicialmente, para saber qué tanto tiene que implementar, se debe tener muy bien la idea y el boceto de un robot sencillo, para proceder a crearlo.
 
-Boceto Final:
-De Frente 
+###### Boceto Final:
+De Frente
+
 ![alt text](https://drive.google.com/uc?id=0B9eych6A6_6QQ2puRE9aNmc1OUU)
 
 De Lado
+
 ![alt text](https://drive.google.com/uc?id=0B9eych6A6_6QVk0wTGMzcXR6WWs)
 
-De Atras
+De Atrás
+
 ![alt text](https://drive.google.com/uc?id=0B9eych6A6_6QekxoYS1oS1gyZVE)
 
 En esta ocasión, se creará un robot que tendrá una caja, la cual servirá de cuerpo al robot; otra caja, que será la cámara; unas esferas para el caster y 2 cilindros para las ruedas.
@@ -230,7 +233,7 @@ La estructura inicial para la creación de un robot, es la siguiente:
 	<static>false</static>
 ```
 
-Se declara la etiquetas xml y la versión del formato sdf a utilizar. 
+Se declara las etiquetas XML y la versión del formato SDF a utilizar. 
 La etiqueta “model” indicará la realización de un robot o cualquier objeto que se realice y se nombra; en este caso “my robot”. La etiqueta “static” es usada para referenciar si el objeto a crearse se moverá en el ambiente (false) o se quedara detenido (true).
 
 Gazebo, utiliza dos partes, para simular un objeto:
@@ -380,7 +383,7 @@ Y por último se crea la cámara. En este caso, se utilizó una caja con una dec
 
 Se declaró la posición (encima del chasis), una masa y sus propiedades físicas y visuales.
 
-Gazebo, cuando se trata de realizar la captura de alguna información, maneja sensores, los cuales existen de una gran variedad, sensores de ruido, buscadores de rayos láser, cámaras en 2D y 3D, sensores estilo kinect, sensores de contacto, entre muchos más. 
+Gazebo, cuando se trata de realizar la captura de alguna información, maneja sensores, los cuales existen de una gran variedad, sensores de ruido, buscadores de rayos láser, cámaras en 2D y 3D, sensores estilo Kinect, sensores de contacto, entre muchos más. 
 
 En esta ocasión, se utilizó un sensor de cámara:
 ```
@@ -431,7 +434,7 @@ Después de realizar todo el cuerpo del robot, solamente falta unir las partes d
 ```
 La declaración de una etiqueta “joint”, se realiza indicando el tipo de unión. Existen 5 tipos, los cuales generalmente son para movimientos. En este caso, se utilizó el tipo “revolute”, la cual permite realizar un giro sobre un eje fijo. Se determina la posición donde se dará la unión, por medio de la etiqueta “pose”; La etiqueta “child” se determina el “link” a unir y la etiqueta “parent” permite identificar qué objeto es el principal para unir.
 
-la Etiqueta “axis”, determinara cual eje se activará para realizar su propia rotación.
+la Etiqueta “axis”, determinará cual eje se activará para realizar su propia rotación.
 
 Se realiza las uniones de las ruedas con el chasis del robot movible.
 ```
@@ -454,12 +457,169 @@ Se realiza las uniones de las ruedas con el chasis del robot movible.
 </joint>
 ```
 
-Para Finalizar, Es importante realizar el cierre de todo, en especial del modelo y de la extensión del documento.
-
+Es importante realizar el cierre de todo, en especial del modelo y de la extensión del documento.
 ```
 	</model>
 </sdf>
 ```
+
+Se debe de ubicar la carpeta .gazebo/models, se crea una nueva carpeta, con el nombre del modelo del Robot.
+
+Se crea un archivo con la extensión .config para detectar la configuración del modelo del Robot.
+
+El archivo contendrá un modelo de etiquetas XML como el siguiente.
+
+```
+<?xml version="1.0" ?>
+<model>
+	<name>Nombre_Robot </name>
+	<version>1.0</version>
+	<sdf version="1.4"> Archivo_Diseño_Robot.sdf</sdf>
+	<author>
+		<name>Nombre_Autor</name>
+		<email>email_Autor@Mail.com</email>
+	</author>
+
+	<description>
+		Descripción del robot
+	</description>
+</model>
+
+```
+
+En la estructura debe de incluir el nombre del modelo, la estructura del diseño del robot creado y con la version del SDF utilizado.
+
+Opcionalmente, le solicita la información del autor y la descripción del modelo del robot.
+
+Finalmente, al abrir **Gazebo**, podrá encontrar en el listado de los modelos de **Gazebo** donde se encontrar el Robot.
+
+
+
+### CREACION DE ESCENARIOS PARA GAZEBO
+
+El escenario que se creó para el proyecto, se divide en dos partes: 
+- Se realizó mediante el programa de Blender. Un escenario de Mallas donde se puede Terrenos.
+- Los Obstáculos con los elementos geométricos que está en **Gazebo**
+
+El escenario se crea mediante un archivo .word con una estructura de etiquetas SDF, es necesariamente que el escenario hecho en Blender sea exportada en formato .DAE, para que **Gazebo** la pueda reconocerlo.
+
+Inicialmente el archivo debe de contener la siguiente cabecera.
+
+```
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="default">
+```
+
+Con la información que se creara un archivo XML, junto con la estructura de etiquetas SDF y se nombra el escenario "Word" que se va a construir.
+
+Para incluir modelos se realiza con la etiqueta "include". En el proyecto el escenario incluyo el "planeta" que tiene **Gazebo**, el robot en una posición del escenario y el Sol que incluye **Gazebo**.
+
+```
+ <include>
+      <uri>model://ground_plane</uri>
+    </include>
+	<include>
+		<pose>-1.809116 4.699705 0.013797 .0 .0 .0</pose>
+	      <uri>model://Robot</uri>
+	</include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+```
+
+Para construir elementos dentro del escenario, donde se tendrá física y algunas especificaciones, se debe de crear un modelo sobre los elementos que estarán. 
+
+En el proyecto, se introdujo el escenario de Mallas de un terreno y una caja.
+
+El modelo inicia con la etiqueta "model".
+
+```
+<model name="my_mesh">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+```
+
+La debe de identificar el modelo y ubicarlo dentro del escenario. Además, especificar si el modelo estará "quieto" dentro de la simulación.
+
+Se procede dentro de la estructura del modelo, con los "link" que son construcciones de elementos dentro del elemento. 
+
+dentro de un link, se podrá crear un elemento con las herramientas que trae **Gazebo** o se puede importar algunos elementos.
+
+Dentro del proyecto se importó el escenario de mallas, un terreno realizado previamente en Blende y exportando en formato .DAE
+
+```
+<link name="body">
+    	<collision name="geom">
+          <geometry>
+            <mesh><uri>file://pasto1.dae</uri></mesh>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>file://pasto1.dae</uri></mesh>
+          </geometry>
+        </visual>
+</link>
+```
+
+Dentro del elemento que se va a importar, se le puede dar la opción de que el terreno tenga implementadas las leyes de físicas, en dado caso, se especifica en la etiqueta “Collision"", que **Gazebo** lo interpreta como un elemento que contendrá elementos de física. Las mallas son figuras formadas por triángulos geométricos, permitiendo que **Gazebo** las interprete dentro de la etiqueta "Geometry"->"Mesh", y se dará la ubicación donde se encuentre el archivo .DAE del escenario de Mallas.
+
+Para que el elemento sea visible dentro del escenario. se utiliza la etiqueta "visual" e incluyendo la misma información de la etiqueta "collision", para que se tenga una relación entre lo visual y la parte de leyes de física.
+
+En la creación de los demás elementos, se utiliza igualmente, como se realizó en la estructura del Robot. 
+
+Se realiza mediante la etiqueta "link".
+```
+<link name="Box1">
+		<pose>1.788620 5.703180 0.523794 .0 .0 .0</pose>
+		<inertial>
+        		<mass>0.1</mass>
+      		</inertial>
+		<collision name="Box1_collision">
+		        <geometry>
+			        <box>
+				        <size>1 1 1</size>
+			          </box>
+		        </geometry>
+		</collision>
+		<visual name="Box1_visual">
+		        <geometry>
+			          <box>
+            				<size>1 1 1</size>
+			          </box>
+		        </geometry>
+		</visual>
+</link>
+```
+
+Se especifica el nombre del elemento que se va a crear y la posición donde se ubicara con la etiqueta "pose".
+
+Se especificará dentro de la etiqueta "inertia" algunas características internas del elemento, en el ejemplo, se especifica la masa que tendrá el elemento dentro de la etiqueta "mass".
+
+Se especifica la parte de la física que contendrá el elemento, en la etiqueta "collision". en el ejemplo, se hace referencia a crear una figura geométrica, de una caja, con las etiquetas "geometry"->"box", y se dará la especificación, de sus dimensiones en X, Y y Z.
+
+Por la parte visual del elemento. se realiza mediante la etiqueta "visual", copiando la misma información de la parte de las leyes de física, para que se pueda tener una relación entre la física y lo visual.
+
+Para finalizar el documento, se cierra las etiquetas iniciales.
+```
+    </model>
+  </world>
+</sdf>
+
+```
+
+Para ver que el escenario se construyó bien, en la terminal de Ubuntu debe de correr **Gazebo** y pasarle como parámetro el nombre del archivo que contiene el escenario creado anteriormente.
+
+```sh
+ $Gazebo Nombre_escenario.world
+```
+
+Escenario 
+
+![alt text](https://drive.google.com/uc?id=0B9eych6A6_6QQVVOXzRDN00yVXM) 
 
 ### ARQUITECTURA DEL PROGRAMA
 
@@ -474,7 +634,7 @@ Los topics que se requirió en el proyecto, fueron:
     - Las dimensiones (width y height ) de la imagen.
     - El formato de píxeles que utiliza. 
     - Un arreglo de bytes (Imagen).
-- JointCmd: Se maneja la información de las articulaciones (Joints) que tiene el robot , en         este caso, la rueda del robot. Se maneja una estructura de un paquete de mensaje, donde     contiene la siguiente información:
+- JointCmd: Se maneja la información de las articulaciones (Joints) que tiene el robot, en         este caso, la rueda del robot. Se maneja una estructura de un paquete de mensaje, donde     contiene la siguiente información:
     - Nombre.
     - Fuerza, que maneja la unidad de Newton (N).
     - Positión.
@@ -482,15 +642,15 @@ Los topics que se requirió en el proyecto, fueron:
     - Velocidad.
     - Reset.
 
-La comunicación de Gazebo con la información generada a través de **gzserver** mediante el patrón **Suscriptor / Publicador**, mediante el protocolo **TCP/IP socket**. Permitiendo a **Google Protobufs**  realizar la serialización (traducción) de los mensajes entre el suscriptor y el publicador. A la vez, **Boost ASIO** realiza la comunicación entre las capas de **Gazebo** y **Google Protobuts**.
+La comunicación de Gazebo con la información generada a través de **gzserver** mediante el patrón **Suscriptor / Publicador**, mediante el protocolo **TCP/IP socket**. Permitiendo a **Google Protobufs** realizar la serialización (traducción) de los mensajes entre el suscriptor y el publicador. A la vez, **Boost ASIO** realiza la comunicación entre las capas de **Gazebo** y **Google Protobuts**.
  
 #### TECNOLOGÍA UTILIZADA
 
-La comunicación que se realizó con Gazebo, fueron con dos programa en la cual incluía la tecnología de **Trollius**.
+La comunicación que se realizó con Gazebo, fueron con dos programas en la cual incluía la tecnología de **Trollius**.
 
-**Trollius:** Utiliza una infraestructura para la escritura de un solo codigo concurrente que usa coroutine, múltiple acceso I/O sobre sockets y otros recursos.
+**Trollius:** Utiliza una infraestructura para la escritura de un solo código concurrente que usa coroutine, múltiple acceso I/O sobre sockets y otros recursos.
 
-Se utilizó el lenguaje de programación **Python**. Para realizar la comunicación entre los programas y Gazebo, se utilizo la librería de **Pygazebo**.
+Se utilizó el lenguaje de programación **Python**. Para realizar la comunicación entre los programas y Gazebo, se utilizó la librería de **Pygazebo**.
 
 **Pygazebo:** contiene la estructura de mensajes que se requiere para realizar la comunicación con Gazebo Topic y la tecnología de Google Protobuts
 
@@ -498,74 +658,74 @@ Se utilizó el lenguaje de programación **Python**. Para realizar la comunicaci
 
 ##### CV-RobotSim-Suscriptor
 
-Al iniciarse le programa, se crea un API server que corre localmente por el puerto 8081, realizando la comunicación a un Cliente que va a consumir el servició de las imagenes que se genera en el simulador **Gazebo** o de una camara que se encuentre conectada.
+Al iniciarse el programa, se crea un API server que corre localmente por el puerto 8081, realizando la comunicación a un Cliente que va a consumir el servició de las imágenes que se genera en el simulador **Gazebo** o de una cámara que se encuentre conectada.
 
 El API server, ofrece los servicios de:
 
-- Recibimiento de la información del robot del que se requiera sacar las imagenes. La información que recibe debe seguir el siguiente estandar:
-    - Se recibira las peticiones en el formato JSON.
+- Recibimiento de la información del robot del que se requiera sacar las imágenes. La información que recibe debe seguir el siguiente estándar:
+    - Se recibirá las peticiones en el formato JSON.
     - El JSON debe de tener las variables y la información de cada uno: 
         - "name_robot": El nombre del robot.
-        - "name_camera": El nombre de la forma de la camara.
-        - "name_camera_sensor": El nombre del sensor que tiene la forma dela camara.
+        - "name_camera": El nombre de la forma de la cámara.
+        - "name_camera_sensor": El nombre del sensor que tiene la forma dela cámara.
     - Las peticiones deben ser mediante POST 
-    - El Path donde deben de enviar las peticiónes es: /NameCamera.
+    - El Path donde deben de enviar las peticiones es: /NameCamera.
     
-- Salida de imagenes del simulador **Gazebo** o de una , que utiliza el siguiente estandar:
+- Salida de imágenes del simulador **Gazebo** o de una, que utiliza el siguiente estándar:
     - La información de la imagen tiene el encabezado de:
         ```
         b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n
-
+	```
 - Se recibe peticiones mediante GET.
 - El Path donde deben de enviar las peticiones es: /video.mjpg.
 
-Tambíen, el programa se subscribe al tópico que maneja las imágenes, extrayendo la información, mediante paquetes que gazebo envía cada segundo que genera una nueva imagen. 
+También, el programa se subscribe al tópico que maneja las imágenes, extrayendo la información, mediante paquetes que **Gazebo** envía cada segundo que genera una nueva imagen. 
 
-Cada vez que llegue un nuevo paquete, se contruye la imagen según la información del paquete.
+Cada vez que llegue un nuevo paquete, se construye la imagen según la información del paquete.
 
-El paquete que envía Gazebo trae un arreglo de bytes en formato String. El programa convierte mediante la libreria numpy a un arreglo de bytes.
+El paquete que envía Gazebo trae un arreglo de bytes en formato String. El programa convierte mediante la librería numpy a un arreglo de bytes.
 
-Se crea una nueva imagen vacia con las dimensiones y el formato RGB de la imagen que se quiere construir, mediante **OpenCv**.
+Se crea una nueva imagen vacía con las dimensiones y el formato RGB de la imagen que se quiere construir, mediante **OpenCv**.
 
-Se utiliza el arreglo de bytes para poner cada byte en la imagen vacía. Acabo el proceso de construcción, se ingresa a un la estructura de datos de una Cola.
+Se utiliza el arreglo de bytes para poner cada byte en la imagen vacía. Acabo el proceso de construcción, se ingresa a una estructura de datos de una Cola.
 
-Cada vez que un cliente se conecte al API Server, va consumiendo las imagenes que el API Server va sacando de la estructura de datos de una Cola.
+Cada vez que un cliente se conecte al API Server, va consumiendo las imágenes que el API Server va sacando de la estructura de datos de una Cola.
 
 
-##### CV-RobotSim-Publicador :
+##### CV-RobotSim-Publicador:
 
 Al iniciarse el programa, se crea un API server que corre localmente por el puerto 8080, realizando la comunicación a un Cliente que va a enviar información al simulador **Gazebo**. 
 
 El API server ofrece los siguientes servicios:
 
-- Recibimiento de la información del robot y las llantas que se desean mover. La información que recibe debe cumplir el siguiente estadar:
-    - Se recibira las peticiones en el formato JSON.
-    - El JSON debe de contener las variables y la informacipn de cada uno:
+- Recibimiento de la información del robot y las llantas que se desean mover. La información que recibe debe cumplir el siguiente estándar:
+    - Se recibirá las peticiones en el formato JSON.
+    - El JSON debe de contener las variables y la información de cada uno:
         - "name_robot": El nombre del robot que desea mover.
         - "name_right_wheels": Un arreglo de las llantas de la parte Derecha.
         - "name_left_wheels": Un arreglo de las llantas de la parte Izquierda.
-    - Las peticiones debe ser mendiate POST.
+    - Las peticiones debe ser mediante POST.
     - El Path donde deben de enviar las peticiones es: /NameMovement.
-- Recibimiento de instrucciones de movimientos, La información que se recibe debe cumplir con el siguiente estandar:
-    - Se recibira las peticiones en el formato JSON.
+- Recibimiento de instrucciones de movimientos, La información que se recibe debe cumplir con el siguiente estándar:
+    - Se recibirá las peticiones en el formato JSON.
     - El JSON debe de contener la "Instruction".
     - En la variable "Instruction" debe de contener alguna de las siguientes letras: 
         - "w": Si desea que se mueva hacia adelante.
         - "a": Si desea que se mueva hacia la Izquierda.
         - "d": Si desea que se mueva hacia la Derecha.
-        - "s": Si desea que se mueva hacia Atras.
+        - "s": Si desea que se mueva hacia Atrás.
     - Las peticiones deben ser mediante POST.
     - El Path donde deben de enviar las peticiones es: /Instruction.
  
-Tambien, el programa se anuncia como un publicado para que Gazebo pueda reconocer las peticiones que se le enviará. Cada petición sera de mover las articulaciones de cada llanta que tiene el robot.
+También, el programa se anuncia como un publicador para que **Gazebo** pueda reconocer las peticiones que se le enviará. Cada petición será de mover las articulaciones de cada llanta que tiene el robot.
 
-Al recibir mediante el API server una petición de movimiento es introducido a una estructura de datos de una Cola. 
+Al recibir mediante el API server una petición de movimiento es introducida a una estructura de datos de una Cola. 
 
-El publicador, estara constantemente revisando la infromación de la Cola. Cuando se encuentre una petición la procesa e invoca las llantas que se deban mover. 
+El publicador, estará constantemente revisando la información de la Cola. Cuando se encuentre una petición la procesa e invoca las llantas que se deban mover. 
 
-Cada llanda recibe una información sobre la fuerza que se le va aplicar, el programa, aplicar la fuerza de 1.0 Newton (N) hacia adelante y 2.0 Newton hacia atras y los lados.
+Cada llanta recibe una información sobre la fuerza que se le va aplicar, el programa, aplicar la fuerza de 1.0 Newton (N) hacia adelante y 2.0 Newton hacia atrás y los lados.
 
-Gracias a la libreria PyGazebo, los paquetes de mensajes esta ya predefinidos, simplemente se llena las variables mencionadas anteriormente (Robot, Llantas y Fuerza) y se realiza el envio al topic donde puede publicar.
+Gracias a la librería PyGazebo, los paquetes de mensajes esta ya predefinidos, simplemente se llena las variables mencionadas anteriormente (Robot, Llantas y Fuerza) y se realiza el envió al topic donde puede publicar.
 
 ### RESULTADOS:
 
